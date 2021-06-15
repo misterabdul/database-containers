@@ -1,6 +1,19 @@
 version: "3.9"
 
 services:
+  # MySQL 5.6 for my work environment
+  mysql56:
+    container_name: mysql56
+    image: mysql:5.6
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
+    ports:
+      - ${MYSQL56_PORT}:3306
+    volumes:
+      - ./volumes/mysql56:/var/lib/mysql
+
   mysql:
     container_name: mysql
     image: mysql
@@ -13,16 +26,16 @@ services:
     volumes:
       - ./volumes/mysql:/var/lib/mysql
 
-  # mariadb:
-  #   container_name: mariadb
-  #   image: mariadb
-  #   restart: unless-stopped
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
-  #   ports:
-  #     - ${MYSQL_PORT}:3306
-  #   volumes:
-  #     - ./volumes/mariadb:/var/lib/mariadb
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
+    ports:
+      - ${MARIADB_PORT}:3306
+    volumes:
+      - ./volumes/mariadb:/var/lib/mariadb
 
   phpmyadmin:
     container_name: phpmyadmin
