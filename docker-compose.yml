@@ -39,7 +39,7 @@ services:
 
   phpmyadmin:
     container_name: phpmyadmin
-    image: phpmyadmin
+    image: misterabdul/phpmyadmin
     restart: unless-stopped
     depends_on:
       - "mysql"
