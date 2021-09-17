@@ -92,6 +92,37 @@ services:
     volumes:
       - ./volumes/mongo:/data/db
       - ./volumes/mongo-config:/data/configdb
+    entrypoint: ["/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all"]
+
+  mongo2:
+    container_name: mongo2
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+      MONGO_INITDB_DATABASE: admin
+    ports:
+      - ${MONGO2_PORT}:27017
+    volumes:
+      - ./volumes/mongo2:/data/db
+      - ./volumes/mongo2-config:/data/configdb
+    entrypoint: ["/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all"]
+
+  mongo3:
+    container_name: mongo3
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+      MONGO_INITDB_DATABASE: admin
+    ports:
+      - ${MONGO3_PORT}:27017
+    volumes:
+      - ./volumes/mongo3:/data/db
+      - ./volumes/mongo3-config:/data/configdb
+    entrypoint: ["/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all"]
 
   mongo-express:
     container_name: mongo-express
