@@ -26,3 +26,18 @@ rsconf = {
    ]
 }
 ```
+
+Setup mongodb (from inside the container's shell)
+
+```sh
+# Setup replica set
+mongo
+> rs.initiate()
+> rs.add('mongo2:27017')
+> rs.add('mongo3:27017')
+
+# Setup admin user
+mongo
+> use admin
+> db.createUser({user: 'admin', pwd: '<your_password>', roles:[{role: 'userAdminDatabase', db: 'admin'}]})
+```
