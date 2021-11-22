@@ -92,7 +92,13 @@ services:
     volumes:
       - ./volumes/mongo:/data/db
       - ./volumes/mongo-config:/data/configdb
-    entrypoint: ["/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--replSet",
+        "rsmongo",
+        "--bind_ip_all"
+      ]
 
   mongo2:
     container_name: mongo2
@@ -109,7 +115,13 @@ services:
     volumes:
       - ./volumes/mongo2:/data/db
       - ./volumes/mongo2-config:/data/configdb
-    entrypoint: ["/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--replSet",
+        "rsmongo",
+        "--bind_ip_all"
+      ]
 
   mongo3:
     container_name: mongo3
@@ -126,7 +138,13 @@ services:
     volumes:
       - ./volumes/mongo3:/data/db
       - ./volumes/mongo3-config:/data/configdb
-    entrypoint: ["/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--replSet",
+        "rsmongo",
+        "--bind_ip_all"
+      ]
 
   mongo-express:
     container_name: mongo-express
