@@ -144,7 +144,7 @@ services:
       [
         "/bin/sh",
         "-c",
-        "mongo mongo:27017/$$MONGO_INITDB_DATABASE -u$$MONGO_INITDB_ROOT_USERNAME -p$$MONGO_INITDB_ROOT_PASSWORD --authenticationDatabase $$MONGO_INITDB_DATABASE /external/scripts/mongo-setup.js"
+        "/external/scripts/mongo-setup.sh"
       ]
 
   mongo-express:
