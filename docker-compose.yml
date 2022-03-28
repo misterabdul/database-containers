@@ -12,7 +12,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
     ports:
-      - ${MYSQL56_PORT}:3306
+      - 127.0.0.1:${MYSQL56_PORT}:3306
     volumes:
       - ./volumes/mysql56:/var/lib/mysql:rw
     command: --default-authentication-plugin=mysql_native_password
@@ -31,7 +31,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
     ports:
-      - ${MYSQL_PORT}:3306
+      - 127.0.0.1:${MYSQL_PORT}:3306
     volumes:
       - ./volumes/mysql:/var/lib/mysql:rw
     command: --default-authentication-plugin=mysql_native_password
@@ -46,7 +46,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
     ports:
-      - ${MARIADB_PORT}:3306
+      - 127.0.0.1:${MARIADB_PORT}:3306
     volumes:
       - ./volumes/mariadb:/var/lib/mariadb:rw
 
@@ -65,7 +65,7 @@ services:
       - PMA_HOST=mysql
       # - PMA_HOST=mariadb
     ports:
-      - ${PMA_PORT}:80
+      - 127.0.0.1:${PMA_PORT}:80
 
   postgres:
     container_name: postgres
@@ -77,7 +77,7 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASS}
     ports:
-      - ${POSTGRES_PORT}:5432
+      - 127.0.0.1:${POSTGRES_PORT}:5432
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/data:rw
 
@@ -94,7 +94,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASS}
     ports:
-      - ${PGADMIN_PORT}:80
+      - 127.0.0.1:${PGADMIN_PORT}:80
     volumes:
       - ./volumes/pgadmin4:/var/lib/pgadmin:rw
       - ./volumes/pgadmin4:/certs/server.cert:rw
@@ -113,7 +113,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
       MONGO_INITDB_DATABASE: admin
     ports:
-      - ${MONGO1_PORT}:27017
+      - 127.0.0.1:${MONGO1_PORT}:27017
     volumes:
       - ./volumes/mongo1/data:/data/db:rw
       - ./volumes/mongo1/config:/data/configdb:rw
@@ -133,7 +133,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
       MONGO_INITDB_DATABASE: admin
     ports:
-      - ${MONGO2_PORT}:27017
+      - 127.0.0.1:${MONGO2_PORT}:27017
     volumes:
       - ./volumes/mongo2/data:/data/db:rw
       - ./volumes/mongo2/config:/data/configdb:rw
@@ -171,14 +171,14 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASS}
       ME_CONFIG_MONGODB_SERVER: "mongo"
     ports:
-      - ${MONGO_EXPRESS_PORT}:8081
+      - 127.0.0.1:${MONGO_EXPRESS_PORT}:8081
 
   redis:
     container_name: redis
     image: redis
     restart: unless-stopped
     ports:
-      - ${REDIS_PORT}:6379
+      - 127.0.0.1:${REDIS_PORT}:6379
     volumes:
       - ./volumes/redis:/data:rw
 
@@ -191,7 +191,7 @@ services:
     environment:
       REDIS_HOST: redis
     ports:
-      - ${REDIS_COMMANDER_PORT}:8081
+      - 127.0.0.1:${REDIS_COMMANDER_PORT}:8081
 
 networks:
   default:
