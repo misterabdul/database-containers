@@ -9,6 +9,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
     ports:
@@ -28,6 +29,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
     ports:
@@ -43,6 +45,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
     ports:
@@ -57,6 +60,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     depends_on:
       - "mysql"
       # - "mariadb"
@@ -74,6 +78,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASS}
     ports:
@@ -108,6 +113,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
@@ -126,6 +132,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     depends_on:
       - "mongo"
     environment:
@@ -146,6 +153,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     depends_on:
       - "mongo"
       - "mongo2"
@@ -164,6 +172,7 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     depends_on:
       - "mongo"
     environment:
@@ -177,6 +186,10 @@ services:
     container_name: redis
     image: redis
     restart: unless-stopped
+    stdin_open: true
+    tty: true
+    privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     ports:
       - 127.0.0.1:${REDIS_PORT}:6379
     volumes:
@@ -186,6 +199,10 @@ services:
     container_name: redis-commander
     image: rediscommander/redis-commander
     restart: unless-stopped
+    stdin_open: true
+    tty: true
+    privileged: true
+    user: "${DOCKER_USER}:${DOCKER_USERGROUP}"
     depends_on:
       - "redis"
     environment:
