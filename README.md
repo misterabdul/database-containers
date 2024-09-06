@@ -1,5 +1,7 @@
 # Various database containers for local development purposes
 
-## Mongodb
+## Running
 
-If mongodb replica set won't start, execute `rs.initiate()` from inside the mongo container.
+```sh
+$ ./init.sh && docker compose up -d
+```
